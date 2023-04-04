@@ -1,10 +1,12 @@
-###### ----- Final-Project-Backend ----- #####
+# ----- Final-Project-FrontEnd ----- #
 
 
-### --- Project Overview --- ###
 
-- The purpose and goal of this project is to create a ticket tracker application that is similar to, and has some of the same basic functionality of, the JIRA project management software. This software is used by project managers to create tickets and or tasks in order to track the progress of a given project. These tickets include an identifying title and a description of the task(s) at hand. 
-- The typical workflow of a project is to assign these tickets/tasks to specific developers on a given team. It is then up to the developer(s) in question to update the ticket status appropriately in relation to their progress on an assigned task to include comments, feedback and or any issues that they may be encountering.  The project managers work with their developers as well as all relevant stakeholders to ensure that these tickets are assigned, changed to the appropriate status where required, and finally resolved, when the task(s) have been completed. 
+## --- Project Overview --- ##
+
+The purpose and goal of this project is to create a ticket tracker application that is similar to, and has some of the same basic functionality of, the JIRA project management software. This software is used by project managers to create tickets and or tasks in order to track the progress of a given project. These tickets include an identifying title and a description of the task(s) at hand. 
+  
+The typical workflow of a project is to assign these tickets/tasks to specific developers on a given team. It is then up to the developer(s) in question to update the ticket status appropriately in relation to their progress on an assigned task to include comments, feedback and or any issues that they may be encountering.  The project managers work with their developers as well as all relevant stakeholders to ensure that these tickets are assigned, changed to the appropriate status where required, and finally resolved, when the task(s) have been completed. 
 
 ### --- Technical Stack Needed For This Project --- ###
 
@@ -23,7 +25,8 @@
 - (Optional) uuidv4 - Unique ID Generator
 - (Optional) axios - Promise Based HTTP Client For The Browser And Node.js
 
-# - Basic Installation FrontEnd:  
+
+### - Basic Installation FrontEnd:  
 
 - npm install
 - npx create-react-app - Creates React Application
@@ -32,7 +35,7 @@
 - npm install react-router-dom
 
 
-# - Basic Installation BackEnd:
+### - Basic Installation BackEnd:
 
 - npx express-generator
 - npm install
@@ -46,13 +49,13 @@
 ### --- Basic Functionality Of The Application --- ###
 
 
-# - Ability To Register And Login - #
+#### - Ability To Register And Login - ####
 
 - The user will be able to register with the application. 
 
 - Once the user has registered, then they will be able to log into and out of the application. 
 
-# - Ticket Management - #
+#### - Ticket Management - ####
 
 - The user will be able to create new tickets and edit those that have already been created.
 
@@ -65,7 +68,7 @@
 ### --- Additional Functionality Of The Application --- ###
 
 
-# - Ability To Register And Login - #
+#### - Ability To Register And Login - ####
 
 - The user's password will be encrypted via salt+hash algorithm.
 
@@ -74,7 +77,7 @@
 - The user will be able to log out of the application and log into it with a different account. 
 
 
-# - Ticket Management - #
+#### - Ticket Management - ####
 
 - There will be a page or a modal for users to create new tickets.
 
@@ -93,7 +96,6 @@
 - The ticket list will be sortable and filterable.
 - The ticket list will be paginated.
 - If a user clicks a ticket title, it will bring up a quick edit modal of the ticket.
-
 
 
 

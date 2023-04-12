@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 const { db } = require("../mongo");
-const { uuid } = require("uuidv4");
+const { v4: uuidv4 } = require("uuid");
 
 async function getAllTickets(req, res) {
 
@@ -24,8 +24,8 @@ async function createOneTicket(req, res) {
       const title  = req.body.title 
       const text = req.body.text 
       const creator = req.body.creator
-      const status =  req.body.status;
-      //const creationdate = req.body.creationdate
+      const status =  req.body.status
+      const year = req.body.year
   
       //pass fields to new Ticket model 
       //notice how it's way more organized and does the type checking for us
@@ -33,10 +33,11 @@ async function createOneTicket(req, res) {
           title: title,
           text: text,
           creator: creator,
+          year: year,
           status: status,
-          id: uuid(),
-          creationdate: Date(),
-          lastModified: Date(),
+          id: uuidv4(),
+          creationdate: new Date(),
+          lastModified: new Date(),
       };
   
       //save our new entry to the database 

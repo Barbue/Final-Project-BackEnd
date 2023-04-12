@@ -1,7 +1,7 @@
 const { v4: uuidv4 } = require("uuid");
 var express = require("express");
 var router = express.Router();
-//const { db } = require("../mongo");
+
 const TicketsController = require('../controllers/TicketsControllers');
 
 // CRUD OPERATIONS 

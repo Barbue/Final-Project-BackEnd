@@ -1,7 +1,7 @@
-const Ticket = require('./models/Tickets');
+const Ticket = require('../models/Tickets');
 var express = require('express');
 var router = express.Router();
-const { db } = require("../mongo");
+// const { db } = require("../mongo");
 const { v4: uuidv4 } = require("uuid");
 
 async function getAllTickets(req, res) {
@@ -27,16 +27,14 @@ async function createOneTicket(req, res) {
   
       //pass fields to new Ticket model 
       //notice how it's way more organized and does the type checking for us
-      const newTicket = {
+      const newTicket = new Ticket({
           title: title,
           text: text,
           creator: creator,
           year: year,
           status: status,
-          id: uuidv4(),
-          creationdate: new Date(),
-          lastModified: new Date(),
-      };
+          
+      });
   
       //save our new entry to the database 
       const response =  await newTicket.save();
@@ -84,7 +82,7 @@ async function updateOneTicket(req,res){
 
     // const updatedTicket = Ticket.updateOne({id: req.params.id}, req.body);
 
-     res.json({success: true, ticketUpdate: `ticket entry id ${updatedTicket} updated` });
+     res.json({success: true, ticketUpdate: updatedTicket });
 
     } catch (error) {
         console.log(error);
@@ -101,7 +99,7 @@ async function deleteOneTicketById(req,res){
 
         res.json({
             success: true,
-            deletedTicket: `ticket entry id ${deletedTicket} deleted`
+            deletedTicket: deletedTicket
         });
     } catch (error) {
         console.log(error);

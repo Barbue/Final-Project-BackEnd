@@ -1,22 +1,23 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-//load environment variables from .env (.env is the default file)
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+
 
 const cors = require('cors');
 
+//load environment variables from .env (.env is the default file)
 require("dotenv").config();
 
 //look in our .env file for PORT, if it's not there, default to 5002.
 const PORT = process.env.PORT || 5002;
 
-var { mongoConnect } = require('./mongo.js');
+const { mongoConnect } = require('./mongo.js');
 mongoConnect();
 
-// var { mongooseConnect } = require('./mongoose.js');
-// mongooseConnect();
+const { mongooseConnect } = require('./mongoose.js');
+ mongooseConnect();
 //register routes.
 //NOTE: notice how there is .js after index, this is because
 // we exported the module as index. 

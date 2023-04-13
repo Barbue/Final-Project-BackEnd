@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 5002;
 const { mongoConnect } = require('./mongo.js');
 mongoConnect();
 
-const { mongooseConnect } = require('./mongoose.js');
+const mongooseConnect  = require('./mongoose.js');
  mongooseConnect();
 //register routes.
 //NOTE: notice how there is .js after index, this is because

@@ -1,4 +1,4 @@
-// const Ticket = require('../models/tickets');
+const Ticket = require('./models/Tickets');
 var express = require('express');
 var router = express.Router();
 const { db } = require("../mongo");
@@ -8,13 +8,11 @@ async function getAllTickets(req, res) {
 
     //query Tickets
     try {
-        //res.send("respond with a resource");
-
-     const allTickets =  await db().collection("tickets").find({}).toArray();
-   
- res.json({tickets: allTickets });
-    }catch(e){
-      console.log(e);
+        const allTickets =  await Ticket.find({});
+        res.json({success: true, tickets: allTickets });
+    }catch(error){
+     res.json({success: false, message: error})
+      
     }
 }
 
@@ -41,74 +39,80 @@ async function createOneTicket(req, res) {
       };
   
       //save our new entry to the database 
-      const insertNewTicket =  await db().collection("tickets").insertOne(newTicket);
+      const response =  await newTicket.save();
       
       //return the successful request to the user 
       res.json({
           success: true,
-          tickets: insertNewTicket
+          addedTicket: response 
       });
   
-    } catch (e) {
-      console.log(typeof e);
-      console.log(e);
-      res.json({
-        error: e.toString(),
-      });
+    } catch (error) {
+      console.log(error);
+      res.json({success: false, message: error});
     }
-  }
+}
 
-async function getOneTicket(req, res, next) {
-
-    
-    let oneTicketPost;
+async function getOneTicketById(req, res) {
+      let oneTicketPost;
+      //console.log(req.params);
+      const {idToGet} = req.params;
 
     try {
-        oneTicketPost = await db().collection("tickets").findOne({id: req.params.id});
+        oneTicketPost = await Ticket.findOne({id: idToGet});
+        //check if the blog exists
+        //throw will move to catch
+        if(oneTicketPost === null) throw "Ticket not found";
+
+        res.json({
+            sucess: true,
+            oneTicket: oneTicketPost});
+
     } catch (error) {
-        console.log(error);
+        console.log("Error Message", error);
+        res.json({success: false, message: error});
     }
-    res.json({
-        sucess: true,
-        oneTicket: oneTicketPost
-    })
 }
 
 async function updateOneTicket(req,res){
-    const entryId = req.params.id;
-
+    
     try {
-        await db().collection("tickets").updateOne({ id: entryId }, req.body);
-    } catch (err) {
-        console.log(err);
-        throw err;  
+        const { idToUpdate } = req.params;
+
+    const updatedTicket = await Ticket.findOneAndUpdate(
+        { id: idToUpdate }, req.body);
+
+    // const updatedTicket = Ticket.updateOne({id: req.params.id}, req.body);
+
+     res.json({success: true, ticketUpdate: `ticket entry id ${updatedTicket} updated` });
+
+    } catch (error) {
+        console.log(error);
+        res.json({success: false, message: error});
     }
-    res.json({
-        success: true,
-        message: `ticket entry id ${entryId} updated`
-    })
+    
 }
 
-async function deleteOneTicket(req,res){
-    const entryId = req.params.id;
-
+async function deleteOneTicketById(req,res){
     try {
-        await db().collection("tickets").deleteOne({id: entryId});
-    } catch (err) {
-        console.log(err);
-        throw err;  
-    }
 
-    res.json({
-        success: true,
-        message: `ticket entry id ${entryId} deleted`
-    })
+        const { idToDelete } = req.params;
+        const deletedTicket = await Ticket.findOneAndDelete({id: idToDelete});
+
+        res.json({
+            success: true,
+            deletedTicket: `ticket entry id ${deletedTicket} deleted`
+        });
+    } catch (error) {
+        console.log(error);
+        res.json({success: false, message: error}); 
+    }
 }
 
 module.exports = {
     createOneTicket,
-    deleteOneTicket,
+    deleteOneTicketById,
     getAllTickets,
-    getOneTicket,
+    getOneTicketById,
     updateOneTicket
 };

@@ -1,3 +1,4 @@
+const User = require('../models/Users');
 var express = require("express");
 var router = express.Router();
 const { uuid } = require("uuidv4");

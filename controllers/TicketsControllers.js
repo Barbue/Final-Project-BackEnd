@@ -20,19 +20,19 @@ async function createOneTicket(req, res) {
     try {
       //parse out fields from POST request
       const title  = req.body.title 
-      const text = req.body.text 
+      const description = req.body.description
       const creator = req.body.creator
       const status =  req.body.status
-      const year = req.body.year
+      const comments = req.body.comments
   
       //pass fields to new Ticket model 
       //notice how it's way more organized and does the type checking for us
       const newTicket = new Ticket({
           title: title,
-          text: text,
+          description: description,
           creator: creator,
-          year: year,
           status: status,
+          comments: comments,
           
       });
   

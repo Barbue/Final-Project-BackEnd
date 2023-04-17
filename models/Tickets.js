@@ -5,12 +5,12 @@ const { v4: uuidv4 } = require("uuid");
 //create a ticketSchema 
 const ticketSchema = new mongoose.Schema({
     title: String,
-    text: String, 
+    description: String, 
     creator: String,
-    year: Number,
     status: String,
+    comments: String,
     id: {type: String, default: uuidv4},
-    createdAt: { type: Date, default: Date.now },
+    createdAt: { type: Date, default: Date.now},
     lastModified: { type: Date, default: Date.now}
 }); 
 

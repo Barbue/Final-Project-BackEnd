@@ -58,7 +58,7 @@ async function getOneTicketById(req, res) {
 
     try {
         oneTicketPost = await Ticket.findOne({id: idToGet});
-        //check if the blog exists
+        //check if the ticket exists
         //throw will move to catch
         if(oneTicketPost === null) throw "Ticket not found";
 

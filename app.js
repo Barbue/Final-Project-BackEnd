@@ -3,8 +3,6 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
-
 const cors = require('cors');
 
 //load environment variables from .env (.env is the default file)
@@ -13,8 +11,8 @@ require("dotenv").config();
 //look in our .env file for PORT, if it's not there, default to 5002.
 const PORT = process.env.PORT || 5002;
 
-const { mongoConnect } = require('./mongo.js');
-mongoConnect();
+// const { mongoConnect } = require('./mongo.js');
+// mongoConnect();
 
 const mongooseConnect  = require('./mongoose.js');
  mongooseConnect();
@@ -29,6 +27,7 @@ var app = express();
 
 
 //add CORS middleware 
+// stops cors error from frontend api calls
 app.use(cors());
 app.options("*", cors());
 
@@ -38,6 +37,8 @@ app.set('view engine', 'ejs');
 
 //set up logger and cookie parser 
 app.use(logger('dev'));
+
+//parse the data coming
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

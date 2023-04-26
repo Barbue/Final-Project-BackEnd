@@ -21,20 +21,34 @@ async function createOneTicket(req, res) {
       //parse out fields from POST request
       const title  = req.body.title 
       const description = req.body.description
+      const relatedTicketIds = req.body.relatedTicketIds
+      const assignedToUserId = req.body.assignedToUserId
+      console.log(relatedTicketIds)
       const creator = req.body.creator
       const status =  req.body.status
       const comments = req.body.comments
-  
+
+    //   const createdAt = req.body.createdAt
+    //   const lastModified = req.body.lastModified
+
+
+    
+
       //pass fields to new Ticket model 
       //notice how it's way more organized and does the type checking for us
       const newTicket = new Ticket({
           title: title,
           description: description,
+          relatedTicketIds: relatedTicketIds.split(","),
+          assignedToUserId: assignedToUserId,
           creator: creator,
           status: status,
           comments: comments,
+        //   createdAt: createdAt,
+        //   lastModified: lastModified,
           
       });
+      //await newTicket.relatedTicketIds.push(relatedTicketIds)
   
       //save our new entry to the database 
       const response =  await newTicket.save();
@@ -57,7 +71,7 @@ async function getOneTicketById(req, res) {
       const {idToGet} = req.params;
 
     try {
-        oneTicketPost = await Ticket.findOne({id: idToGet});
+        oneTicketPost = await Ticket.findOne({createdById: idToGet});
         //check if the ticket exists
         //throw will move to catch
         if(oneTicketPost === null) throw "Ticket not found";
@@ -78,7 +92,10 @@ async function updateOneTicket(req,res){
         const { idToUpdate } = req.params;
 
     const updatedTicket = await Ticket.findOneAndUpdate(
-        { id: idToUpdate }, req.body);
+        { createdById: idToUpdate }, req.body);
+
+       //{ id: idToUpdate }
+
 
     // const updatedTicket = Ticket.updateOne({id: req.params.id}, req.body);
 
@@ -95,7 +112,8 @@ async function deleteOneTicketById(req,res){
     try {
 
         const { idToDelete } = req.params;
-        const deletedTicket = await Ticket.findOneAndDelete({id: idToDelete});
+        const deletedTicket = await Ticket.findOneAndDelete({createdById: idToDelete});
+        //{id: idToDelete});
 
         res.json({
             success: true,

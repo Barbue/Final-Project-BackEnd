@@ -6,13 +6,18 @@ const { v4: uuidv4 } = require("uuid");
 const ticketSchema = new mongoose.Schema({
     title: String,
     description: String, 
+    relatedTicketIds:[String],
+    assignedToUserId: String,
     creator: String,
     status: String,
     comments: String,
-    id: {type: String, default: uuidv4},
+    createdById: {type: String, default: uuidv4},
     createdAt: { type: Date, default: Date.now},
-    lastModified: { type: Date, default: Date.now}
+    lastModified: Date, 
+    lastUpdatedById: String,  
 }); 
+
+// { type: Date, default: Date.now},
 
 
 //register model to collection

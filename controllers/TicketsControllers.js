@@ -24,9 +24,11 @@ async function createOneTicket(req, res) {
       const relatedTicketIds = req.body.relatedTicketIds
       const assignedToUserId = req.body.assignedToUserId
       console.log(relatedTicketIds)
-      const creator = req.body.creator
+      const createdBy = req.body.createdBy
       const status =  req.body.status
+      const organization = req.body.organization
       const comments = req.body.comments
+     
 
     //   const createdAt = req.body.createdAt
     //   const lastModified = req.body.lastModified
@@ -41,8 +43,9 @@ async function createOneTicket(req, res) {
           description: description,
           relatedTicketIds: relatedTicketIds.split(","),
           assignedToUserId: assignedToUserId,
-          creator: creator,
+          createdBy: createdBy,
           status: status,
+          organization: organization,
           comments: comments,
         //   createdAt: createdAt,
         //   lastModified: lastModified,

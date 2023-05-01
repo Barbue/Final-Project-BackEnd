@@ -8,13 +8,15 @@ const ticketSchema = new mongoose.Schema({
     description: String, 
     relatedTicketIds:[String],
     assignedToUserId: String,
-    creator: String,
+    createdBy: String,
     status: String,
+    organization: String,
     comments: String,
     createdById: {type: String, default: uuidv4},
     createdAt: { type: Date, default: Date.now},
     lastModified: Date, 
-    lastUpdatedById: String,  
+    lastUpdatedById: String,
+    
 }); 
 
 // { type: Date, default: Date.now},

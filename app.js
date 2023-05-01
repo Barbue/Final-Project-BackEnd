@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const multer = require('multer');
 
 //load environment variables from .env (.env is the default file)
 require("dotenv").config();
@@ -30,6 +31,9 @@ var app = express();
 // stops cors error from frontend api calls
 app.use(cors());
 app.options("*", cors());
+
+//multer
+// app.use(multer());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

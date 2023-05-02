@@ -1,5 +1,4 @@
 ----- Final-Project-BackEnd -----
-
 --- Project Overview ---
 
 The purpose and goal of this project is to create a ticket tracker application that is similar to, and has some of the same basic functionality of, the JIRA project management software. This software is used by project managers to create tickets and or tasks in order to track the progress of a given project. These tickets include an identifying title and a description of the task(s) at hand.
@@ -74,11 +73,13 @@ The typical workflow of a project is to assign these tickets/tasks to specific d
     - description {String}
     - relatedTicketIds {uuid[]}
     - assignedToUserId {uuid}
+    - created by {String}
     - status {String}
-    - createdAt {Date}
+    - comments {String}
+    - organization {String}
     - createdById {uuid}
-    - lastModified {Date}
     - lastUpdatedById {uuid}
+    - lastModified {Date}
 
     The ticket list will be sortable and filterable.
 

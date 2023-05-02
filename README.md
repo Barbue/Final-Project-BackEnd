@@ -87,11 +87,13 @@ The typical workflow of a project is to assign these tickets/tasks to specific d
       - description {String}
       - relatedTicketIds {uuid[]}
       - assignedToUserId {uuid}
+      - created by {String}
       - status {String}
-      - createdAt {Date}
+      - comments {String}
+      - organization {String}
       - createdById {uuid}
-      - lastModified {Date}
       - lastUpdatedById {uuid}
+      - lastModified {Date}
 
 - The ticket list will be sortable and filterable.
 - The ticket list will be paginated.
